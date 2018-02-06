@@ -26,7 +26,7 @@ public class Shape
    {
       window.setColor(color);
       window.fillRect(xPos, yPos, width, height);
-
+      window.fillOval(xPos + 50, yPos + 50, width, height);
      
 
    }

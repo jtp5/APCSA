@@ -41,8 +41,9 @@ public class ShapePanel extends JPanel
 		square.draw(window);
 
 		//instantiate a Shape
+		Shape rec = new Shape(200, 200, 80, 200, Color.GREEN);
 		//tell your shape to draw
-
+		rec.draw(window);
 		//instantiate a Shape
 		//tell your shape to draw
 	}
