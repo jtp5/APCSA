@@ -1,6 +1,7 @@
 package Unit9;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * The Deck class represents a shuffled deck of cards.
@@ -8,7 +9,8 @@ import java.util.ArrayList;
  *      initialize, shuffle, deal, and check if empty.
  */
 public class Deck {
-
+	
+	private Random r = new Random();
 	/**
 	 * cards contains all the cards in the deck.
 	 */
@@ -35,6 +37,9 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		for (int i = 0; i < ranks.length; i++) {
+			cards[i] = new Card(ranks[i], suits[i], values[i]);
+		}
 	}
 
 
@@ -44,6 +49,10 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if(cards.length == 0){
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -52,6 +61,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		return cards.length;
 	}
 
 	/**
@@ -69,6 +79,19 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if(cards.length == 0){
+			return null;
+		}
+		Card dealtCard = cards[0];
+		Card[] newCards = new Card[cards.length - 1];
+		
+		for (int i = 0; i < newCards.length; i++) {
+			newCards[i] = cards[i + 1];
+		}
+		
+		cards = newCards;
+		
+		return dealtCard;
 	}
 
 	/**
