@@ -17,7 +17,7 @@ public class Deck {
 	//private List<Card> cards;
 	
 	//Unit 9 - Array version of the Deck
-	private Card[] cards;
+	private Card[] cards = new Card[52];
 
 	/**
 	 * size is the number of not-yet-dealt cards.

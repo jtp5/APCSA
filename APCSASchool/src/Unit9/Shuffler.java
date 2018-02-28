@@ -52,6 +52,11 @@ public class Shuffler {
 	 */
 	public static void perfectShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		Card[] shuffled = new Card[52];
+		int k = 0;
+		for (int i = 0; i < 25; i++) {
+			shuffled[k] =
+		}
 	}
 
 	/**
