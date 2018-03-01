@@ -1,4 +1,5 @@
 package Unit9;
+import java.util.Random;
 /**
  * This class provides a convenient way to test shuffling methods.
  */
@@ -52,11 +53,18 @@ public class Shuffler {
 	 */
 	public static void perfectShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
-		Card[] shuffled = new Card[52];
+		int[] shuffled = new int[values.length];
 		int k = 0;
-		for (int i = 0; i < 25; i++) {
-			shuffled[k] =
+		for (int i = 0; i < (shuffled.length/2) - 1; i++) {
+			shuffled[k] = values[i];
+			k += 2;
 		}
+		k = 1;
+		for (int i = shuffled.length/2; i < shuffled.length - 1; i++) {
+			shuffled[k] = values[i];
+			k += 2;
+		}
+		values = shuffled;
 	}
 
 	/**
@@ -72,5 +80,25 @@ public class Shuffler {
 	 */
 	public static void selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		Random r = new Random();
+		int place = 0;
+		int holder = 0;
+		for (int i = values.length - 1; i > 1; i--) {
+			place = r.nextInt(i + 1);
+			holder = values[i];
+			values[i] = values[place];
+			values[place] = holder;
+		}
+		
 	}
+	
+	public static String coinFlip(){
+		Random r = new Random();
+		if((r.nextInt(3) + 1) > 1){
+			return "heads";
+		}
+		return "tails";
+	}
+	
+	
 }
