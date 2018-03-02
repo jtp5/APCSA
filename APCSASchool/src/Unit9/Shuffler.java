@@ -97,7 +97,7 @@ public class Shuffler {
 		if((r.nextInt(3) + 1) > 1){
 			return "heads";
 		}
-		return "tails";
+		return "tails"
 	}
 	
 	
