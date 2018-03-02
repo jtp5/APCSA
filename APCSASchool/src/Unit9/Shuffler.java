@@ -97,7 +97,16 @@ public class Shuffler {
 		if((r.nextInt(3) + 1) > 1){
 			return "heads";
 		}
-		return "tails"
+		return "tails";
+	}
+	
+	public static boolean arePermutations(int[] values, int[] values2){
+		for (int i = 0; i < values.length; i++) {
+			if(values[i] == values2[i]){
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	
