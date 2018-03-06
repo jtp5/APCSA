@@ -31,13 +31,16 @@ public class MadLib
 	public MadLib(String fileName)
 	{
 		//load stuff
+		nouns = new ArrayList<String>();
+		adjectives = new ArrayList<String>();
+		verbs = new ArrayList<String>();
 		loadNouns();
 		loadAdjectives();
 		loadVerbs();
 		
 		
 		try{
-			Scanner file = new Scanner(new File(fileName));
+			Scanner file = new Scanner(new File(System.getProperty("user.dir") + fileName));
 			while(file.hasNext()){
 				output += file.next();
 			}
@@ -124,11 +127,12 @@ public class MadLib
 	public String getRandomAdjective()
 	{
 		
-		return "";
+		return adjectives.get(r.nextInt(adjectives.size()));
 	}		
 
 	public String toString()
 	{
-	   return "\n\n\n";
+		
+	   return "The " + getRandomNoun() + " " + getRandomVerb() + " after the " + getRandomAdjective() + " " + getRandomAdjective() + " " + getRandomNoun() +  " while the " + getRandomNoun() + " " + getRandomVerb() +  " the " + getRandomNoun();
 	}
 }

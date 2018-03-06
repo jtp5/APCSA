@@ -12,7 +12,7 @@ public class Lab16d
 	public static void main( String args[] )
 	{
 		//make a new MadLib
-		
-		out.println("\n");
+		MadLib test = new MadLib("\\src\\Unit10\\story.dat");
+		out.println(test);
 	}
 }
