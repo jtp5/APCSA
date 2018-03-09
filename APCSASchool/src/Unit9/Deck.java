@@ -17,7 +17,7 @@ public class Deck {
 	//private List<Card> cards;
 	
 	//Unit 9 - Array version of the Deck
-	private Card[] cards = new Card[52];
+	private ArrayList<Card> cards = new ArrayList<Card>();
 
 	/**
 	 * size is the number of not-yet-dealt cards.
@@ -40,7 +40,7 @@ public class Deck {
 		int place = 0;
 		for (int i = 0; i < suits.length; i++) {
 			for (int j = 0; j < ranks.length; j++) {
-				cards[place] = new Card(ranks[j], suits[i], values[j]);
+				cards.add(new Card(ranks[j], suits[i], values[j]));
 				place++;
 			}
 		}
@@ -54,7 +54,7 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		if(cards.length == 0){
+		if(cards.size() == 0){
 			return true;
 		}
 		return false;
@@ -66,7 +66,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		return cards.length;
+		return cards.size();
 	}
 
 	/**
@@ -78,11 +78,11 @@ public class Deck {
 		Random r = new Random();
 		int place = 0;
 		Card holder;
-		for (int i = cards.length - 1; i > 1; i--) {
+		for (int i = cards.size() - 1; i > 1; i--) {
 			place = r.nextInt(i + 1);
-			holder = cards[i];
-			cards[i] = cards[place];
-			cards[place] = holder;
+			holder = cards.get(i);
+			cards.set(i, cards.get(place));
+			cards.set(place, holder);
 		}
 	}
 
@@ -93,14 +93,14 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		if(cards.length == 0){
+		if(cards.size() == 0){
 			return null;
 		}
-		Card dealtCard = cards[0];
-		Card[] newCards = new Card[cards.length - 1];
+		Card dealtCard = cards.get(0);
+		ArrayList<Card> newCards = new ArrayList<Card>();
 		
-		for (int i = 0; i < newCards.length; i++) {
-			newCards[i] = cards[i + 1];
+		for (int i = 0; i < newCards.size(); i++) {
+			newCards.set(i, cards.get(i + 1));
 		}
 		
 		cards = newCards;
@@ -120,7 +120,7 @@ public class Deck {
 		//Unit 9 - modify to work with Arrays
 		
 		for (int k = size - 1; k >= 0; k--) {
-			rtn = rtn + cards[k];
+			rtn = rtn + cards.get(k);
 			if (k != 0) {
 				rtn = rtn + ", ";
 			}
@@ -131,12 +131,12 @@ public class Deck {
 		}
 
 		rtn = rtn + "\nDealt cards: \n";
-		for (int k = cards.length - 1; k >= size; k--) {
-			rtn = rtn + cards[k];
+		for (int k = cards.size() - 1; k >= size; k--) {
+			rtn = rtn + cards.get(k);
 			if (k != size) {
 				rtn = rtn + ", ";
 			}
-			if ((k - cards.length) % 2 == 0) {
+			if ((k - cards.size()) % 2 == 0) {
 				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}
