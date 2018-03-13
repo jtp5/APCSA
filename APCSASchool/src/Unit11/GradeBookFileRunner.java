@@ -17,9 +17,26 @@ public class GradeBookFileRunner
    {
 		out.println("Welcome to the Class Stats program!");
 		
-		Scanner file = new Scanner(new File("gradebook.dat"));
 
-
+		try{
+			Scanner file = new Scanner(new File(System.getProperty("user.dir")+"\\src\\Unit11\\gradebook.dat"));
+			int k = 0;
+			while(file.hasNextLine()){
+				
+			}
+		
+		
+		
+		
+		
+		
+	
+		
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 
 
 

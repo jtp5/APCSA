@@ -15,9 +15,9 @@ public class ClassTester
    public static void main( String args[] )
    {
 		Class test = new Class("Comp Sci 1",3);
-		test.addStudent(0,new Student("Jimmy","4 - 100 90 80 60"));
-		test.addStudent(1,new Student("Sandy","4 - 100 100 80 70"));
-		test.addStudent(2,new Student("Fred","4 - 50 50 70 68"));				
+		test.addStudent(0,new Student("Jimmy","100 90 80 60 "));
+		test.addStudent(1,new Student("Sandy","100 100 80 70 "));
+		test.addStudent(2,new Student("Fred","50 50 70 68 "));				
 		out.println(test);
 		
 		out.println(String.format(test.getStudentName(0) + "\'s average = %.2f",test.getStudentAverage(0)));	
