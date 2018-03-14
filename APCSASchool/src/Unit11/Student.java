@@ -84,8 +84,8 @@ public class Student implements Comparable
 	public String toString()
 	{
 		String output = myName + " = ";
-		for (int i = 0; i < myGrades.getGradeList().length; i++) {
-			output += myGrades.getGradeList()[i].getNumericGrade() + " ";
+		for (int i = 0; i < myGrades.getGradeList().size(); i++) {
+			output += myGrades.getGradeList().get(i).getNumericGrade() + " ";
 		}
 		return output;
 	}
