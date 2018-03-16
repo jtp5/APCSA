@@ -27,7 +27,7 @@ public class FancyWords
 	public String toString()
 	{
 		String output="";
-		int max = Integer.MIN_VALUE;
+		int max = 0;
 
 		for (int i = 0; i < wordRay.length; i++) {
 			if(wordRay[i].length() > max){
@@ -37,8 +37,8 @@ public class FancyWords
 
 		for (int i = 0; i < max; i++) {
 			for (int j = 0; j < wordRay.length; j++) {
-				if((wordRay[(wordRay.length - 1) - j].length() - i) >= 0){
-					output += wordRay[j].charAt(i);
+				if((wordRay[(wordRay.length - 1) - j].length()) - i >= 1){
+					output += wordRay[(wordRay.length - 1) - j].charAt(i);
 				}
 				else{
 					output += " ";
