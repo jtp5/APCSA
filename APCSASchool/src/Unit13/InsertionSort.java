@@ -21,9 +21,8 @@ class InsertionSort {
 	// modfiers
 	public void add(String word) {
 		int loc = 0;
-		
-		if (Math.abs(Collections.binarySearch(list, word)) < list.size()) {
-			list.add(Math.abs(Collections.binarySearch(list, word)), word);
+		if (Math.abs(Collections.binarySearch(list, word)) - 1 <= list.size() - 1) {
+			list.add(Math.abs(Collections.binarySearch(list, word)) - 1, word);
 		}
 		else if(Collections.binarySearch(list, word) < 0){
 			list.add(word);
@@ -33,7 +32,6 @@ class InsertionSort {
 	public void remove(String word) {
 
 		if (Collections.binarySearch(list, word) >= 0) {
-			System.out.println(list.get(Collections.binarySearch(list, word)));
 			list.remove(Collections.binarySearch(list, word));
 		}
 
