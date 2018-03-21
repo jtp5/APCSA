@@ -38,7 +38,7 @@ public class FancyWords
 		for (int i = 0; i < max; i++) {
 			for (int j = 0; j < wordRay.length; j++) {
 				if((wordRay[(wordRay.length - 1) - j].length()) - i >= 1){
-					output += wordRay[(wordRay.length - 1) - j].charAt(i);
+					output += wordRay[(wordRay.length - 1) - j].charAt(wordRay[(wordRay.length - 1) - j].length() - 1 - i);
 				}
 				else{
 					output += " ";
