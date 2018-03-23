@@ -13,7 +13,7 @@ import static java.lang.System.*;
 public class Maze
 {
    private int[][] maze;
-
+   private boolean exitFound = false;
 	public Maze()
 	{
 		maze = new int[][]{{1, 0, 0, 0, 0}, {1, 1, 1, 1, 1}, {0, 0, 0, 0, 0}};
@@ -36,22 +36,19 @@ public class Maze
 
 	public boolean hasExitPath(int r, int c)
 	{
-		int save = 0;
 		if((r < maze.length && r > -1) && (c < maze[r].length && c > -1) && (maze[r][c] == 1)){
-			save = maze[r][c];
 			maze[r][c] = 2;
-			hasExitPath(r - 1, c);
-			hasExitPath(r + 1, c);
-			hasExitPath(r, c - 1);
-			hasExitPath(r, c + 1);
+			if(c == maze.length - 1){
+				exitFound = true ;
+			}
+			else{
+				hasExitPath(r - 1, c);
+				hasExitPath(r + 1, c);
+				hasExitPath(r, c - 1);
+				hasExitPath(r, c + 1);
+			}
 		}
-		if(c == maze.length - 1){
-			return true;
-		}
-		if((r < maze.length && r > -1) && (c < maze[r].length && c > -1)){
-			maze[r][c] = save;
-		}
-		return false;
+		return exitFound;
 	}
 
 	public int[][] getMaze(){
