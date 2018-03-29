@@ -1,13 +1,8 @@
 package Unit9;
 
 import java.util.List;
-import java.util.ArrayList;
 
-/**
- * The ElevensBoard class represents the board in a game of Elevens.
- */
-public class ElevensBoard extends Board{
-
+public class ElevensBoardAssessment extends Board{
 	/**
 	 * The size (number of cards) on the board.
 	 */
@@ -47,8 +42,9 @@ public class ElevensBoard extends Board{
 	/**
 	 * Creates a new <code>ElevensBoard</code> instance.
 	 */
-	public ElevensBoard() {
+	public ElevensBoardAssessment() {
 		super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
+		System.out.println("Jones Pearlman\nPeriod 4\nComputer Number: 40");
 	}
 
 
@@ -65,15 +61,17 @@ public class ElevensBoard extends Board{
 	 */
 	public boolean isLegal(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		if(containsPairSum11(selectedCards)){
-			return true;
+		boolean faceCard = false;
+		for (int i : selectedCards) {
+			if (cardAt(i).rank().equals("king") || cardAt(i).rank().equals("queen")
+					|| cardAt(i).rank().equals("jack")) {
+				faceCard = true;
+			}
 		}
-		else if(containsJQK(selectedCards)){
-			return true;
+		if (faceCard) {
+			return containsJQK(selectedCards);
 		}
-	
-		return false;
-		
+		return containsTripSum11(selectedCards);
 	}
 
 	/**
@@ -86,7 +84,7 @@ public class ElevensBoard extends Board{
 	 */
 	public boolean anotherPlayIsPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		if(containsPairSum11(cardIndexes())){
+		if(containsTripSum11(cardIndexes())){
 			return true;
 		}
 		else if(containsJQK(cardIndexes())){
@@ -104,10 +102,10 @@ public class ElevensBoard extends Board{
 	 * @return true if the board entries in selectedCards contain an 11-pair;
 	 *         false otherwise.
 	 */
-	private boolean containsPairSum11(List<Integer> selectedCards) {
+	private boolean containsTripSum11(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 		int track = 0;
-		if (selectedCards.size() == 2) {
+		if (selectedCards.size() == 3) {
 			for (int i : selectedCards) {
 				track += cardAt(i).pointValue();
 			}
@@ -130,7 +128,7 @@ public class ElevensBoard extends Board{
 	private boolean containsJQK(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 		int track = 0;
-		if (selectedCards.size() == 3) {
+		if (selectedCards.size() == 2 && (cardAt(selectedCards.get(0)).rank().equals(cardAt(selectedCards.get(1)).rank()))) {
 			for (int i : selectedCards) {
 				track += cardAt(i).pointValue();
 			}
@@ -141,4 +139,5 @@ public class ElevensBoard extends Board{
 		return false;
 
 	}
+
 }

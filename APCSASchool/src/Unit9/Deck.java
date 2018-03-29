@@ -1,7 +1,6 @@
 package Unit9;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * The Deck class represents a shuffled deck of cards.
@@ -9,15 +8,14 @@ import java.util.Random;
  *      initialize, shuffle, deal, and check if empty.
  */
 public class Deck {
-	
-	private Random r = new Random();
+
 	/**
 	 * cards contains all the cards in the deck.
 	 */
-	//private List<Card> cards;
+	private List<Card> cards;
 	
 	//Unit 9 - Array version of the Deck
-	private ArrayList<Card> cards = new ArrayList<Card>();
+	//private Card[] cards;
 
 	/**
 	 * size is the number of not-yet-dealt cards.
@@ -37,14 +35,25 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		int place = 0;
-		for (int i = 0; i < suits.length; i++) {
-			for (int j = 0; j < ranks.length; j++) {
-				cards.add(new Card(ranks[j], suits[i], values[j]));
-				place++;
+		/*size = ranks.length * suits.length;
+		cards = new Card[size];
+		for(int s = 0; s < suits.length; s++){
+			for(int i = 0; i< ranks.length; i++)
+			{
+				cards[size-1] = new Card(ranks[i], suits[s], values[i]);
+				size--;
 			}
 		}
-		size = ranks.length * suits.length;
+		size = cards.length;*/
+		
+		cards = new ArrayList<Card>();
+		for (int j = 0; j < ranks.length; j++) {
+			for (String suitString : suits) {
+				cards.add(new Card(ranks[j], suitString, values[j]));
+			}
+		}
+		size = cards.size();
+		shuffle();
 	}
 
 
@@ -54,10 +63,7 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		if(cards.size() == 0){
-			return true;
-		}
-		return false;
+		return size == 0;
 	}
 
 	/**
@@ -66,7 +72,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		return cards.size();
+		return size;
 	}
 
 	/**
@@ -75,15 +81,44 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
-		Random r = new Random();
-		int place = 0;
-		Card holder;
-		for (int i = cards.size() - 1; i > 1; i--) {
-			place = r.nextInt(i + 1);
-			holder = cards.get(i);
-			cards.set(i, cards.get(place));
-			cards.set(place, holder);
+		/*int[] cardindex = new int[size];
+		for(int i = 0; i < size; i++)
+		{
+			cardindex[i] = i;
 		}
+		//Shuffler.perfectShuffle(cardindex);
+		
+		Shuffler.selectionShuffle(cardindex);
+		
+		
+		for(int i = 0; i <cards.length; i++)
+		{
+			Card temp = cards[i];
+			cards[i] = cards[cardindex[i]];
+			cards[cardindex[i]] =  temp;
+		}*/
+			
+		
+		/*for (int k = cards.length - 1; k > 0; k--) {
+			int howMany = k + 1;
+			int start = 0;
+			int randPos = (int) (Math.random() * howMany) + start;
+			Card temp = cards[k];
+			cards[k] = cards[randPos];
+			cards[randPos] =  temp;
+		}
+		size = cards.length;*/
+		
+		for (int k = cards.size() - 1; k > 0; k--) {
+			int howMany = k + 1;
+			int start = 0;
+			int randPos = (int) (Math.random() * howMany) + start;
+			Card temp = cards.get(k);
+			cards.set(k, cards.get(randPos));
+			cards.set(randPos, temp);
+		}
+		size = cards.size();
+		
 	}
 
 	/**
@@ -93,19 +128,19 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		if(cards.size() == 0){
+		
+		/*if(size <=0)
+			return null;
+		size = size -1;
+		return cards[size];
+		//return cards[0];
+		 */
+		 if (isEmpty()) {
 			return null;
 		}
-		Card dealtCard = cards.get(0);
-		ArrayList<Card> newCards = new ArrayList<Card>();
-		
-		for (int i = 0; i < newCards.size(); i++) {
-			newCards.set(i, cards.get(i + 1));
-		}
-		
-		cards = newCards;
-		
-		return dealtCard;
+		size--;
+		Card c = cards.get(size);
+		return c;
 	}
 
 	/**
@@ -115,6 +150,30 @@ public class Deck {
 	@Override
 	public String toString() {
 		String rtn = "size = " + size + "\nUndealt cards: \n";
+		
+		
+		/*for (int k = size - 1; k >= 0; k--) {
+			rtn = rtn + cards[k];
+			if (k != 0) {
+				rtn = rtn + ", ";
+			}
+			if ((size - k) % 2 == 0) {
+				// Insert carriage returns so entire deck is visible on console.
+				rtn = rtn + "\n";
+			}
+		}
+
+		rtn = rtn + "\n\n\nDealt cards: \n";
+		for (int k = cards.length - 1; k >=size; k--) {
+			rtn = rtn + cards[k];
+			if (k != size) {
+				rtn = rtn + ", ";
+			}
+			if ((k - cards.length) % 2 == 0) {
+				// Insert carriage returns so entire deck is visible on console.
+				rtn = rtn + "\n";
+			}
+		}*/
 
 
 		//Unit 9 - modify to work with Arrays
