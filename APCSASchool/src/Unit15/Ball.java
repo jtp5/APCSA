@@ -11,7 +11,7 @@ public class Ball extends Block
 
 	public Ball()
 	{
-		super(20, 20, 200,200, Color.BLACK);
+		super(400, 350, 10,10, Color.BLACK);
 		xSpeed = 3;
 		ySpeed = 1;
 	}
