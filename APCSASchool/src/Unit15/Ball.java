@@ -56,6 +56,10 @@ public class Ball extends Block
       draw(window);
    }
    
+   public void erase(Graphics window) {
+	   draw(window, Color.WHITE);
+   }
+   
 	public boolean equals(Object obj)
 	{
 
