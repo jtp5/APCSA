@@ -134,6 +134,20 @@ public class Picture extends SimplePicture
 	  }
   }
   
+  /** Method that fixes the fish underwater */
+  public void fixUnderwater(){
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels){
+		  for (Pixel pixelObj : rowArray){
+			  if(pixelObj.getBlue() < 170){
+				  pixelObj.setGreen((pixelObj.getGreen() + pixelObj.getBlue() + pixelObj.getRed()) / 3);
+				  pixelObj.setRed((pixelObj.getGreen() + pixelObj.getBlue() + pixelObj.getRed()) / 3);
+				  pixelObj.setBlue((pixelObj.getGreen() + pixelObj.getBlue() + pixelObj.getRed()) / 3);
+			  }
+		  }
+	  }
+  }
+  
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -152,6 +166,71 @@ public class Picture extends SimplePicture
         rightPixel.setColor(leftPixel.getColor());
       }
     } 
+  }
+  
+  /** Method that mirrors vertically from right to left */
+  public void mirrorVerticalRightToLeft(){
+	  Pixel[][] pixels = this.getPixels2D();
+	    Pixel leftPixel = null;
+	    Pixel rightPixel = null;
+	    int width = pixels[0].length;
+	    for (int row = 0; row < pixels.length; row++)
+	    {
+	      for (int col = 0; col < width / 2; col++)
+	      {
+	        leftPixel = pixels[row][col];
+	        rightPixel = pixels[row][width - 1 - col];
+	        leftPixel.setColor(rightPixel.getColor());
+	      }
+	    } 
+  }
+  
+  /** Method that mirrors horizontally */
+  public void mirrorHorizontally(){
+	  Pixel[][] pixels = this.getPixels2D();
+	  Pixel upperPixel = null;
+	  Pixel lowerPixel = null;
+	  int length = pixels.length;
+	  for(int row = 0; row < length / 2; row++){
+		  for(int col = 0; col < pixels[0].length; col++){
+			  upperPixel = pixels[row][col];
+			  lowerPixel = pixels[length - 1 - row][col];
+			  lowerPixel.setColor(upperPixel.getColor());
+		  }
+	  }
+  }
+  
+  /**Method that mirrors horizontally from bot to top */
+  public void mirrorHorizontallyBotToTop(){
+	  Pixel[][] pixels = this.getPixels2D();
+	  Pixel upperPixel = null;
+	  Pixel lowerPixel = null;
+	  int length = pixels.length;
+	  for(int row = 0; row < length / 2; row++){
+		  for(int col = 0; col < pixels[0].length; col++){
+			  upperPixel = pixels[row][col];
+			  lowerPixel = pixels[length - 1 - row][col];
+			  upperPixel.setColor(lowerPixel.getColor());
+		  }
+	  }
+  }
+  
+  /** Method that mirrors diagonally */
+  public void mirrorDiagonaly(){
+	  Pixel[][] pixels = this.getPixels2D();
+	  Pixel upperPixel = null;
+	  Pixel lowerPixel = null;
+	  int line = 1;
+	  for(int row = 0; row < line; row++){
+		  for(int col = 0; col < line; col++){
+			  upperPixel = pixels[row][col];
+			  lowerPixel = pixels[col][row];
+			  upperPixel.setColor(lowerPixel.getColor());
+		  }
+		  if(line < pixels.length && line < pixels[0].length){
+			  line++;
+		  }
+	  }
   }
   
   /** Mirror just part of a picture of a temple */

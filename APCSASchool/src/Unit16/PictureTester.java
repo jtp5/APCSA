@@ -46,6 +46,8 @@ public class PictureTester
   public static void testFixUnderwater(){
 	  Picture water = new Picture("water.jpg");
 	  water.explore();
+	  water.fixUnderwater();
+	  water.explore();
   }
   
   /** Method to test mirrorVertical */
@@ -55,6 +57,38 @@ public class PictureTester
     caterpillar.explore();
     caterpillar.mirrorVertical();
     caterpillar.explore();
+  }
+  
+  /** Method to test mirrorVerticalRightToLeft */
+  public static void testMirrorVerticalRightToLeft(){
+	  Picture beach = new Picture("beach.jpg");
+	  beach.explore();
+	  beach.mirrorVerticalRightToLeft();
+	  beach.explore();
+  }
+  
+  /** Method to test mirrorHorizontally */
+  public static void testMirrorHorizontally(){
+	  Picture caterpillar = new Picture("caterpillar.jpg");
+	  caterpillar.explore();
+	  caterpillar.mirrorHorizontally();
+	  caterpillar.explore();
+  }
+  
+  /** Method to test mirrorHorizontallyBotToTop */
+  public static void testMirrorHorizontallyBotToTop(){
+	  Picture caterpillar = new Picture("caterpillar.jpg");
+	  caterpillar.explore();
+	  caterpillar.mirrorHorizontallyBotToTop();
+	  caterpillar.explore();
+  }
+  
+  /** Method to test mirrorDiagonally */
+  public static void testMirrorDiagonally(){
+	  Picture beach = new Picture("beach.jpg");
+	  beach.explore();
+	  beach.mirrorDiagonaly();
+	  beach.explore();
   }
   
   /** Method to test mirrorTemple */
@@ -95,8 +129,12 @@ public class PictureTester
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
-    testFixUnderwater(); //try decreasing blue if the blue is already more than 170
+    //testFixUnderwater();
     //testMirrorVertical();
+	//testMirrorVerticalRightToLeft();
+	//testMirrorHorizontally();
+	//testMirrorHorizontallyBotToTop();
+	//testMirrorDiagonally();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
