@@ -1,10 +1,8 @@
-package Unit15;
+package pongTest;
 
 
+import java.awt.Color;
 import javax.swing.JFrame;
-
-import pongTest.Breakout;
-
 import java.awt.Component;
 
 public class TheGame extends JFrame
@@ -14,7 +12,7 @@ public class TheGame extends JFrame
 
 	public TheGame()
 	{
-		super("BREAKOUT");
+		super("PONG");
 		setSize(WIDTH,HEIGHT);
 		
 		Breakout game = new Breakout();
@@ -28,6 +26,5 @@ public class TheGame extends JFrame
 	public static void main( String args[] )
 	{
 		TheGame run = new TheGame();
-		
 	}
 }

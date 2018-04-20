@@ -4,7 +4,7 @@ package Unit15;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ball extends Block
+public class Ball extends Block implements Collidable
 {
 	private int xSpeed;
 	private int ySpeed;
@@ -87,6 +87,46 @@ public class Ball extends Block
 	
 	public String toString(){
 		return "" + getX() + ", " + getY() + ", " + getWidth() + ", " + getHeight() + ", " + getColor() + ", " + getXSpeed() + ", " + getYSpeed();
+	}
+
+	@Override
+	public boolean didCollideLeft(Object obj) {
+		// TODO Auto-generated method stub
+		Block b = (Block)obj;
+		if((getX() <= (b.getX() + b.getWidth() + Math.abs(getXSpeed())) && (getY() >= b.getY() && getY() <= b.getY() + b.getHeight() || getY() + getHeight() >= b.getY() && getY() + getHeight() < b.getY() + b.getHeight()))){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean didCollideRight(Object obj) {
+		// TODO Auto-generated method stub
+		Block b = (Block)obj;
+		if((getX() >= (b.getX())) && (getY() >= b.getY() && getY() <= b.getY() + b.getHeight() || getY() + getHeight() >= b.getY() && getY() + getHeight() < b.getY() + b.getHeight())){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean didCollideTop(Object obj) {
+		// TODO Auto-generated method stub
+		Block b = (Block)obj;
+		if((getY() <= (b.getY() + b.getHeight() + Math.abs(getYSpeed())) && (getX() >= b.getX() && getX() <= b.getX() + b.getWidth() || getX() + getWidth() >= b.getX() && getX() + getWidth() < b.getX() + b.getHeight()))){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean didCollideBottom(Object obj) {
+		// TODO Auto-generated method stub
+		Block b = (Block)obj;
+		if((getY() >= (b.getY())) && (getX() >= b.getX() && getX() <= b.getX() + b.getWidth() || getX() + getWidth() >= b.getX() && getX() + getWidth() < b.getX() + b.getWidth())){
+			return true;
+		}
+		return false;
 	}
 	
 	
