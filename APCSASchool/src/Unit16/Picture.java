@@ -391,6 +391,37 @@ public class Picture extends SimplePicture {
 			}
 		}
 	}
+	
+	public void blur(int x, int y, int width, int height){
+		Pixel[][] pixels = this.getPixels2D();
+		Pixel pixel = null;
+		Pixel upLeftPixel = null;
+		Pixel upPixel = null;
+		Pixel upRightPixel = null;
+		Pixel rightPixel = null;
+		Pixel downRightPixel = null;
+		Pixel downPixel = null;
+		Pixel downLeftPixel = null;
+		Pixel leftPixel = null;
+		for (int row = y; row < y + height; row++) {
+			for (int col = x; col < x + width; col++) {
+				pixel = pixels[row][col];
+				upLeftPixel = pixels[row - 1][col - 1];
+				upPixel = pixels[row - 1][col];
+				upRightPixel = pixels[row - 1][col + 1];
+				rightPixel = pixels[row][col + 1];
+				downRightPixel = pixels[row + 1][col + 1];
+				downPixel = pixels[row + 1][col];
+				downLeftPixel = pixels[row + 1][col - 1];
+				leftPixel = pixels[row][col - 1];
+				int averageRed = (pixel.getRed() + upLeftPixel.getRed() + upPixel.getRed() + upRightPixel.getRed() + rightPixel.getRed() + downRightPixel.getRed() + downPixel.getRed() + downLeftPixel.getRed() + leftPixel.getRed()) / 9;
+				int averageGreen = (pixel.getGreen() + upLeftPixel.getGreen() + upPixel.getGreen() + upRightPixel.getGreen() + rightPixel.getGreen() + downRightPixel.getGreen() + downPixel.getGreen() + downLeftPixel.getGreen() + leftPixel.getGreen()) / 9;
+				int averageBlue = (pixel.getBlue() + upLeftPixel.getBlue() + upPixel.getBlue() + upRightPixel.getBlue() + rightPixel.getBlue() + downRightPixel.getBlue() + downPixel.getBlue() + downLeftPixel.getBlue() + leftPixel.getBlue()) / 9;
+				Color average = new Color(averageRed, averageGreen, averageBlue);
+				pixel.setColor(average);;
+			}
+		}
+	}
 
 	/*
 	 * Main method for testing - each class in Java can have a main method

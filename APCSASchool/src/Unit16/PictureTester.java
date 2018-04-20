@@ -148,6 +148,17 @@ public class PictureTester
     swan.explore();
   }
   
+  public static void testBlur(){
+	  Picture butterfly = new Picture("KatieFancy.jpg");
+	  butterfly.explore();
+	  butterfly.blur(20, 20, 100, 100);
+	  butterfly.blur(20, 20, 100, 100);
+	  butterfly.blur(20, 20, 100, 100);
+	  butterfly.blur(20, 20, 100, 100);
+	  butterfly.blur(20, 20, 100, 100);
+	  butterfly.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -182,5 +193,6 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+	testBlur();
   }
 }
