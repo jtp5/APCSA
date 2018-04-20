@@ -23,11 +23,16 @@ public class FancyWord
 	{
 
 	   word = s;
-	   
+	   mat = new char[word.length()][word.length()];
+	   for (int i = 0; i < mat.length; i++) {
+		Arrays.fill(mat[i], ' ');
+	}
 	   for(int i=0; i < word.length(); i++)
 		{
 		mat[0][i] = word.charAt(i);
+		mat[mat.length - 1][i] = word.charAt(i);
 		mat[i][i] = word.charAt(i);
+		mat[i][(word.length() - 1) - i] = word.charAt((word.length() - 1) - i);
 		}
 
 	}
@@ -37,7 +42,7 @@ public class FancyWord
 		String output="";
 		
 		for (int i = 0; i < mat.length; i++) {
-			output += (Arrays.toString(mat[i]));
+			output += (Arrays.toString(mat[i])) + "\n";
 		}
 
 
