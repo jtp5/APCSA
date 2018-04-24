@@ -23,9 +23,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Alien alienOne;
 	private Alien alienTwo;
 	private Ammo a;
-
+	private Aliens aliens;
 	
-	private ArrayList<Alien> aliens;
+	private ArrayList<Alien> aliensList;
 	private ArrayList<Ammo> shots;
 	
 
@@ -42,7 +42,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//a = new Ammo(ship.getX(), ship.getY(), 5);
 		alienOne = new Alien(200, 150, 2);
 		alienTwo = new Alien(400, 150, 2);
-		aliens = new ArrayList<Alien>();
+		aliensList = new ArrayList<Alien>();
+		aliensList.add(alienOne);
+		aliensList.add(alienTwo);
+		aliens = new Aliens();
 		aliens.add(alienOne);
 		aliens.add(alienTwo);
 		//instantiate other stuff
@@ -77,9 +80,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.setColor(Color.WHITE);
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		ship.draw(graphToBack);
-		for(Alien a : aliens){
-			a.draw(graphToBack);
-		}
+		aliens.draw(graphToBack);
 		
 		if(alienOne.getX() < 100){
 			alienOne.setSpeed(-alienOne.getSpeed());
@@ -136,7 +137,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 		//add in collision detection
 		for(Ammo a : shots){
-			
+			for (int i = 0; i < aliens.getList().size(); i++) {
+				if(a.getX() >= aliens.getList().get(i).getX() && a.getX() <= aliens.getList().get(i).getX() + 200 && a.getY() >= aliens.getList().get(i).getY() && a.getY() <= aliens.getList().get(i).getY() + 175){
+					aliens.getList().remove(aliens.getList().get(i));
+				}
+			}
 		}
 
 		twoDGraph.drawImage(back, null, 0, 0);
