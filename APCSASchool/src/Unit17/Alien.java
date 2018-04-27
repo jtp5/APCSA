@@ -15,6 +15,7 @@ public class Alien extends MovingThing
 {
 	private int speed;
 	private Image image;
+	private boolean alive;
 
 	public Alien()
 	{
@@ -30,6 +31,7 @@ public class Alien extends MovingThing
 	{
 		super(x, y);
 		speed=s;
+		setAlive(true);
 		try
 		{
 			image = ImageIO.read(new File("src//Unit17//alien.jpg"));
@@ -53,6 +55,14 @@ public class Alien extends MovingThing
 	public void draw( Graphics window )
 	{
    	window.drawImage(image,getX(),getY(),80,80,null);
+	}
+	
+	public void setAlive(boolean x){
+		alive = x;
+	}
+	
+	public boolean isAlive(){
+		return alive;
 	}
 
 	public String toString()
